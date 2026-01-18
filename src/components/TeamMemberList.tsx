@@ -21,14 +21,14 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
   };
 
   return (
-    <div className="w-64 bg-white border-l border-gray-200 flex flex-col">
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
+    <div className="w-64 bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col rounded-lg shadow">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Team Members</h2>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4">
         {teamMembers.length === 0 ? (
-          <p className="text-sm text-gray-500 text-center py-4">
+          <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
             No team members yet. Add someone to get started!
           </p>
         ) : (
@@ -36,14 +36,14 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
             {teamMembers.map((member) => (
               <li
                 key={member.id}
-                className="flex items-center justify-between p-2 rounded-md hover:bg-gray-50 group"
+                className="flex items-center justify-between p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 group"
               >
                 <div className="flex items-center gap-2">
                   <div
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: member.color }}
                   />
-                  <span className="text-sm text-gray-700">{member.name}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">{member.name}</span>
                 </div>
                 <button
                   onClick={() => onRemoveMember(member.id)}
@@ -60,7 +60,7 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
         )}
       </div>
 
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
         {isAdding ? (
           <form onSubmit={handleSubmit} className="space-y-2">
             <input
@@ -68,7 +68,7 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
               value={newMemberName}
               onChange={(e) => setNewMemberName(e.target.value)}
               placeholder="Enter name"
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               autoFocus
             />
             <div className="flex gap-2">
@@ -78,7 +78,7 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
                   setIsAdding(false);
                   setNewMemberName('');
                 }}
-                className="flex-1 px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                className="flex-1 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 Cancel
               </button>
@@ -94,7 +94,7 @@ export function TeamMemberList({ teamMembers, onAddMember, onRemoveMember }: Tea
         ) : (
           <button
             onClick={() => setIsAdding(true)}
-            className="w-full px-3 py-2 text-sm text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50 flex items-center justify-center gap-2"
+            className="w-full px-3 py-2 text-sm text-blue-600 dark:text-blue-400 border border-blue-600 dark:border-blue-400 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/30 flex items-center justify-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

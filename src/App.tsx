@@ -4,6 +4,7 @@ import { Calendar } from './components/Calendar';
 import { ChoreModal } from './components/ChoreModal';
 import { TeamMemberList } from './components/TeamMemberList';
 import { useChores } from './hooks/useChores';
+import { useDarkMode } from './hooks/useDarkMode';
 import type { Chore } from './types';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedChore, setSelectedChore] = useState<Chore | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isDark, toggleDarkMode] = useDarkMode();
 
   const {
     teamMembers,
@@ -67,13 +69,15 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100">
+    <div className="h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
       <Header
         currentDate={currentDate}
         onPrevMonth={handlePrevMonth}
         onNextMonth={handleNextMonth}
         onToday={handleToday}
         onAddChore={handleAddChore}
+        isDark={isDark}
+        onToggleDarkMode={toggleDarkMode}
       />
       <div className="flex-1 flex overflow-hidden p-4 gap-4">
         <Calendar

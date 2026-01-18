@@ -42,13 +42,13 @@ export function Calendar({
   const getMemberById = (id: string) => teamMembers.find((m) => m.id === id);
 
   return (
-    <div className="flex-1 flex flex-col bg-white rounded-lg shadow overflow-hidden">
+    <div className="flex-1 flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
       {/* Weekday headers */}
-      <div className="grid grid-cols-7 border-b border-gray-200">
+      <div className="grid grid-cols-7 border-b border-gray-200 dark:border-gray-700">
         {WEEKDAYS.map((day) => (
           <div
             key={day}
-            className="px-2 py-3 text-center text-sm font-semibold text-gray-700 bg-gray-50"
+            className="px-2 py-3 text-center text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700"
           >
             {day}
           </div>
@@ -67,8 +67,8 @@ export function Calendar({
             <div
               key={index}
               onClick={() => onDateClick(day)}
-              className={`min-h-[100px] border-b border-r border-gray-200 p-1 cursor-pointer hover:bg-gray-50 transition-colors ${
-                !isCurrentMonth ? 'bg-gray-50' : ''
+              className={`min-h-[100px] border-b border-r border-gray-200 dark:border-gray-700 p-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                !isCurrentMonth ? 'bg-gray-50 dark:bg-gray-800/50' : ''
               }`}
             >
               <div className="flex items-center justify-between mb-1">
@@ -77,14 +77,14 @@ export function Calendar({
                     isTodayDate
                       ? 'bg-blue-600 text-white'
                       : isCurrentMonth
-                      ? 'text-gray-900'
-                      : 'text-gray-400'
+                      ? 'text-gray-900 dark:text-gray-100'
+                      : 'text-gray-400 dark:text-gray-500'
                   }`}
                 >
                   {day.getDate()}
                 </span>
                 {dayChores.length > 0 && (
-                  <span className="text-xs text-gray-500">{dayChores.length}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{dayChores.length}</span>
                 )}
               </div>
               <div className="space-y-1 overflow-y-auto max-h-[80px]">
@@ -98,7 +98,7 @@ export function Calendar({
                   />
                 ))}
                 {dayChores.length > 3 && (
-                  <div className="text-xs text-gray-500 px-2">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 px-2">
                     +{dayChores.length - 3} more
                   </div>
                 )}
