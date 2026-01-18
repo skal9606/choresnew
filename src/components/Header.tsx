@@ -5,14 +5,24 @@ interface HeaderProps {
   onPrevMonth: () => void;
   onNextMonth: () => void;
   onToday: () => void;
+  onAddChore: () => void;
 }
 
-export function Header({ currentDate, onPrevMonth, onNextMonth, onToday }: HeaderProps) {
+export function Header({ currentDate, onPrevMonth, onNextMonth, onToday, onAddChore }: HeaderProps) {
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Office Chore Manager</h1>
         <div className="flex items-center gap-4">
+          <button
+            onClick={onAddChore}
+            className="px-4 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            Add Chore
+          </button>
           <button
             onClick={onToday}
             className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"

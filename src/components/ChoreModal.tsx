@@ -2,6 +2,14 @@ import { useState, useEffect } from 'react';
 import type { Chore, TeamMember, RecurrenceType } from '../types';
 import { formatDate } from '../utils/dateUtils';
 
+const PRESET_CHORES = [
+  { title: 'Cooking', icon: '🍳' },
+  { title: 'Cleaning', icon: '🧹' },
+  { title: 'Writing Newsletter', icon: '📝' },
+  { title: 'Grocery Shopping', icon: '🛒' },
+  { title: 'Laundry', icon: '🧺' },
+];
+
 interface ChoreModalProps {
   isOpen: boolean;
   chore: Chore | null;
@@ -77,6 +85,31 @@ export function ChoreModal({
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
             {chore ? 'Edit Chore' : 'Add New Chore'}
           </h2>
+
+          {!chore && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Quick Add
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {PRESET_CHORES.map((preset) => (
+                  <button
+                    key={preset.title}
+                    type="button"
+                    onClick={() => setTitle(preset.title)}
+                    className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
+                      title === preset.title
+                        ? 'bg-blue-100 border-blue-500 text-blue-700'
+                        : 'bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    {preset.icon} {preset.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">

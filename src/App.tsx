@@ -42,6 +42,12 @@ function App() {
     setCurrentDate(new Date());
   };
 
+  const handleAddChore = () => {
+    setSelectedDate(new Date());
+    setSelectedChore(null);
+    setModalOpen(true);
+  };
+
   const handleDateClick = (date: Date) => {
     setSelectedDate(date);
     setSelectedChore(null);
@@ -67,6 +73,7 @@ function App() {
         onPrevMonth={handlePrevMonth}
         onNextMonth={handleNextMonth}
         onToday={handleToday}
+        onAddChore={handleAddChore}
       />
       <div className="flex-1 flex overflow-hidden p-4 gap-4">
         <Calendar
